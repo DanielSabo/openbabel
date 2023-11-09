@@ -142,4 +142,19 @@ else(BUILD_SHARED)
           LIBRARY DESTINATION lib${LIB_SUFFIX}
           ARCHIVE DESTINATION lib${LIB_SUFFIX})
 
+  set(tools
+        obenergy
+        obminimize
+     )
+
+  foreach(tool ${tools})
+    add_executable(${tool} ${tool}.cpp)
+    target_link_libraries(${tool} ${libs})
+    install(TARGETS ${tool}
+                    RUNTIME DESTINATION bin
+                    LIBRARY DESTINATION lib${LIB_SUFFIX}
+                    ARCHIVE DESTINATION lib${LIB_SUFFIX}
+    )
+  endforeach(tool)
+
 endif(BUILD_SHARED)
